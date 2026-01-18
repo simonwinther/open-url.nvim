@@ -13,9 +13,20 @@ I did find another plugin called *url-open*, but it had autocmds and a bunch of 
 Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
-{
+return {
   "simonwinther/open-url.nvim",
+  dependencies = { "folke/snacks.nvim" },
   keys = {
-    { "<leader>O", function() require("open_url").open_at_line() end, desc = "Open URL" },
+    { 
+      "<leader>oul", 
+      function() require("open_url").open_at_line() end, 
+      desc = "Open URL (Line)" 
+    },
+    { 
+      "<leader>oub", 
+      function() require("open_url").open_buffer() end, 
+      desc = "Open URL (Buffer)" 
+    },
   },
 }
+```
