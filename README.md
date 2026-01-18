@@ -4,7 +4,7 @@ A fast and minimalistic URL opener for your Neovim setup. It uses snacks.picker 
 
 ## Demonstration
 
-![demo video](./assets/output.mp4)
+![demo video](./assets/demo.gif)
 
 ## 📦 Installation
 
