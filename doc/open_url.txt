@@ -1,31 +1,38 @@
-*open_url.txt* URL opener for Neovim
+*open-url.txt* A minimalistic URL opener for Neovim
 
-INTRODUCTION                                         
-                                                         *open_url-introduction*
+==============================================================================
+INTRODUCTION                                                        *open-url*
 
-open_url.nvim is a minimal URL extractor and opener. It scans only the 
-current line and uses system defaults to open links.
+open-url.nvim is a fast and minimalistic URL opener. It uses `snacks.picker`
+to handle multiple URLs found on a line or within the entire buffer.
 
-USAGE                                                       
-                                                                *open_url-usage*
+==============================================================================
+USAGE                                                         *open-url-usage*
 
-Call the following function via keymap:
-require('open_url').open_at_line()
+The plugin provides two main Lua functions:
 
-- 0 URLs found: No action.
-- 1 URL found:  Opens via |vim.ui.open|.
-- 2+ URLs found: Opens |snacks.picker| for selection.
+require("open_url").open_at_line()                    *open_url.open_at_line()*
+    Scans the current line for URLs. 
+    - If one is found, it opens it immediately.
+    - If multiple are found, it triggers `snacks.picker` for selection.
 
-INSTALLATION                                         
-                                                         *open_url-installation*
+require("open_url").open_buffer()                      *open_url.open_buffer()*
+    Scans the entire buffer for all URLs and presents them in a fuzzy-searchable
+    picker via `snacks.picker`.
 
-Using |lazy.nvim|:
+==============================================================================
+CONFIGURATION                                          *open-url-configuration*
 
-{
-  "simonwinther/open-url.nvim",
-  keys = {
-    { "<leader>O", function() require("open_url").open_at_line() end, desc = "Open URL" },
-  },
-}
-
+Example setup using |lazy.nvim|:
+>lua
+    {
+      "simonwinther/open-url.nvim",
+      dependencies = { "folke/snacks.nvim" },
+      keys = {
+        { "<leader>oul", function() require("open_url").open_at_line() end, desc = "Open URL (Line)" },
+        { "<leader>oub", function() require("open_url").open_buffer() end, desc = "Open URL (Buffer)" },
+      },
+    }
+<
+==============================================================================
 vim:tw=78:ts=8:ft=help:norl:
