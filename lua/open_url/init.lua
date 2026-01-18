@@ -10,18 +10,18 @@ end
 function M.open_at_line()
 	local line = vim.api.nvim_get_current_line()
 
-	-- Fast Path
-	if not (line:find("http") or line:find("www%.")) then
+	-- Fast Path: Literal check remains the fastest way to bail.
+	if not (line:find("https?://") or line:find("www%.")) then
 		return
 	end
 
 	local urls = {}
-	-- %S+ matches sequences of non-whitespace characters
 	for chunk in line:gmatch("%S+") do
-		if chunk:find("^https?://") or chunk:find("^www%.") then
-			-- Strip trailing punctuation
-			local url = chunk:gsub("[%]%)}%.,;:''\"%s]+$", "")
-			table.insert(urls, url)
+		local start_idx = chunk:find("https?://") or chunk:find("www%.")
+		if start_idx then
+			local potential_url = chunk:sub(start_idx)
+			local clean_url = potential_url:gsub("[%]%)}%.,;:''\"%s]+$", "")
+			table.insert(urls, clean_url)
 		end
 	end
 
