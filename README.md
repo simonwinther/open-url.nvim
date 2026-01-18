@@ -2,6 +2,10 @@
 
 A fast and minimalistic URL opener for your Neovim setup. It uses snacks.picker for multiple links. 
 
+## Demonstration
+
+![demo video](./asset/output.mp4)
+
 ## 📦 Installation
 
 Using [lazy.nvim](https://github.com/folke/lazy.nvim):
