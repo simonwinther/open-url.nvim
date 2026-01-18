@@ -1,6 +1,8 @@
 # open-url.nvim ⚡
 
-A fast and minimalistic URL opener for your Neovim setup. It uses snacks.picker for multiple links. 
+A fast and minimalistic URL opener for your Neovim setup. It uses `snacks.picker` when multiple links are present.
+
+I did find another plugin called *url-open*, but it had autocmds and a bunch of extra highlighting and features I didn’t necessarily need. That’s what inspired me to create this. I just wanted a truly minimalistic way to open a URL when I’m on a line with either multiple URLs or a single one, without a bunch of fancy stuff.
 
 ## Demonstration
 
