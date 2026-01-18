@@ -1,0 +1,31 @@
+*open_url.txt* URL opener for Neovim
+
+INTRODUCTION                                         
+                                                         *open_url-introduction*
+
+open_url.nvim is a minimal URL extractor and opener. It scans only the 
+current line and uses system defaults to open links.
+
+USAGE                                                       
+                                                                *open_url-usage*
+
+Call the following function via keymap:
+require('open_url').open_at_line()
+
+- 0 URLs found: No action.
+- 1 URL found:  Opens via |vim.ui.open|.
+- 2+ URLs found: Opens |snacks.picker| for selection.
+
+INSTALLATION                                         
+                                                         *open_url-installation*
+
+Using |lazy.nvim|:
+
+{
+  "simonwinther/open-url.nvim",
+  keys = {
+    { "<leader>O", function() require("open_url").open_at_line() end, desc = "Open URL" },
+  },
+}
+
+vim:tw=78:ts=8:ft=help:norl:
